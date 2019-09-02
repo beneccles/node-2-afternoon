@@ -12,14 +12,14 @@ module.exports = {
         res.status(200).send(messages);
     },
     update: (req, res) => {
-        const text = req.body; // Original message
+        const { text } = req.body; // Original message
         const updateID = req.params.id; // ID for updated message
         const messageIndex = messages.findIndex(message => message.id == updateID); // Find the matching id in the array.
         let message = messages[messageIndex]; // Assign the message to a variable
 
         messages[messageIndex] = {
             id: message.id, //Reassign the new message to the ID
-            text: text || message.text, //Assign the change in text
+            text: text || message.text, //Assign the change in text, or if empty, keep it the same.
             time: message.time //Assign the new message time
         }
 
